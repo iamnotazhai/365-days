@@ -10,6 +10,7 @@
   --text:#2a2a55;
   --btn:#7c7aff;
   --btn-next:#5ac8fa;
+  --frame:#ffffffcc;
 }
 *{box-sizing:border-box;font-family:'Courier New', monospace;}
 body{
@@ -44,12 +45,14 @@ body{
 .buttons{display:flex;justify-content:center;gap:24px;margin-top:20px;}
 .no{position:relative;}
 .message{margin-top:22px;font-size:18px;}
-.slide3-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;display:flex;gap:24px;}
+.slide3-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;display:flex;gap:24px;flex-direction:column;align-items:center;}
 .slide3-card img{width:260px;border-radius:16px;}
 .slide3-card p{font-size:14px;line-height:1.7;}
-.photobooth{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:50px;}
-.photobooth img{width:30%;border-radius:12px;}
+.photobooth{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px;}
+.photobooth .frame{width:30%;padding:10px;background:var(--frame);border-radius:12px;display:flex;justify-content:center;align-items:center;}
+.photobooth .frame img{width:100%;border-radius:8px;}
 .timer-text{font-size:28px;font-weight:bold;margin-top:20px;}
+.button-full{display:block;width:70%;margin:20px auto;text-align:center;}
 </style>
 </head>
 <body>
@@ -103,7 +106,7 @@ body{
   <div class="back" onclick="nextSlide(1)">← Back</div>
 </div>
 
-<!-- SLIDE 3: Timer sejak 1 Jan 2025 + jam, menit, detik -->
+<!-- SLIDE 3: Timer dengan jam, menit, detik -->
 <div class="slide" id="slide3">
   <div class="center-card" style="font-size:24px;">
     <h2>Time since 1 Jan 2025</h2>
@@ -114,7 +117,7 @@ body{
   <div class="back" onclick="nextSlide(2)">← Back</div>
 </div>
 
-<!-- SLIDE 4: Pesan panjang (slide 3 lama) -->
+<!-- SLIDE 4: Pesan panjang -->
 <div class="slide" id="slide4">
   <div class="slide3-card">
     <img src="couple.jpg">
@@ -136,7 +139,7 @@ body{
       and many happy days ahead.<br><br>
       Always with you. 🤍
     </p>
-    <div class="button button-next" style="margin-top:20px;" onclick="nextSlide(5)">
+    <div class="button button-next button-full" onclick="nextSlide(5)">
       lets be happy so we can create this pict
     </div>
   </div>
@@ -147,12 +150,12 @@ body{
 <div class="slide" id="slide5">
   <h2 style="text-align:center;margin-top:30px;">Our Gallery</h2>
   <div class="photobooth">
-    <img src="couple1.jpg" alt="Couple1">
-    <img src="couple2.jpg" alt="Couple2">
-    <img src="couple3.jpg" alt="Couple3">
-    <img src="couple4.jpg" alt="Couple4">
-    <img src="couple5.jpg" alt="Couple5">
-    <img src="couple6.jpg" alt="Couple6">
+    <div class="frame"><img src="couple1.jpg" alt="Couple1"></div>
+    <div class="frame"><img src="couple2.jpg" alt="Couple2"></div>
+    <div class="frame"><img src="couple3.jpg" alt="Couple3"></div>
+    <div class="frame"><img src="couple4.jpg" alt="Couple4"></div>
+    <div class="frame"><img src="couple5.jpg" alt="Couple5"></div>
+    <div class="frame"><img src="couple6.jpg" alt="Couple6"></div>
   </div>
   <div class="back" onclick="nextSlide(4)">← Back</div>
 </div>
@@ -184,7 +187,7 @@ yesBtn.onclick=()=>{
   }
 }
 
-// Timer logic dengan jam, menit, detik
+// Timer logic
 function updateTimer(){
   const start = new Date('2025-01-01T00:00:00');
   const now = new Date();
