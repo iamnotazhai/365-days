@@ -45,9 +45,9 @@ body{
 .buttons{display:flex;justify-content:center;gap:24px;margin-top:20px;}
 .no{position:relative;}
 .message{margin-top:22px;font-size:18px;}
-.slide4-content{display:flex;flex-direction:row;align-items:flex-start;gap:20px;position:relative;padding:20px;}
+.slide4-content{display:flex;flex-direction:row;align-items:flex-start;gap:20px;position:relative;padding:20px;background:#5a87ff;}
 .slide4-content img{width:40%;border-radius:16px;}
-.slide4-content .text{width:55%; font-size:14px; line-height:1.7;}
+.slide4-content .text{width:55%; font-size:14px; line-height:1.7; color:white;}
 .slide4-content .next-heart{position:absolute;right:20px;bottom:20px;font-size:24px;color:#5ac8fa;cursor:pointer;}
 .photobooth{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:30px;}
 .photobooth .frame{width:30%;padding:10px;background:var(--frame);border-radius:12px;display:flex;justify-content:center;align-items:center;}
@@ -117,7 +117,7 @@ body{
   <div class="back" onclick="nextSlide(2)">← Back</div>
 </div>
 
-<!-- SLIDE 4: Pesan + foto + tombol -->
+<!-- SLIDE 4: Pesan + foto + tombol + latar biru -->
 <div class="slide" id="slide4">
   <div class="slide4-content">
     <img src="couple.jpg" alt="Couple">
@@ -144,7 +144,7 @@ body{
   <div class="back" onclick="nextSlide(3)">← Back</div>
 </div>
 
-<!-- SLIDE 5: Photobooth -->
+<!-- SLIDE 5: Photobooth 2-jajar, 3 foto/baris -->
 <div class="slide" id="slide5">
   <h2 style="text-align:center;margin-top:30px;">Our Gallery</h2>
   <div class="photobooth">
@@ -161,16 +161,14 @@ body{
 <script>
 const bgm = document.getElementById("bgm");
 function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
-
 function nextSlide(n){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
   document.getElementById('slide'+n).classList.add('active');
 }
 
-// Yes/No buttons
+// Yes/No button logic
 const noBtn=document.getElementById('noBtn');
 noBtn.onmouseover=()=>{noBtn.style.left=Math.random()*200-100+'px'; noBtn.style.top=Math.random()*200-100+'px';}
-
 let count=0;
 const yesBtn=document.getElementById('yesBtn');
 const msg=document.getElementById('msg');
@@ -185,7 +183,7 @@ yesBtn.onclick=()=>{
   }
 }
 
-// Timer
+// Timer logic
 function updateTimer(){
   const start = new Date('2025-01-01T00:00:00');
   const now = new Date();
