@@ -209,8 +209,8 @@ body{
   <div class="window action">
     <div class="titlebar"><span></span><span></span><span></span></div>
     <div class="action-body">
-      <!-- Tombol ini sekaligus memulai musik -->
-      <div class="button" onclick="bgm.play(); nextSlide(2)">Happy Anniversary 🤍</div>
+      <!-- Tombol ini memulai musik dan slide -->
+      <div class="button" onclick="startMusicAndSlide()">Happy Anniversary 🤍</div>
     </div>
   </div>
 
@@ -273,19 +273,29 @@ body{
 <script>
 const bgm = document.getElementById("bgm");
 
-function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
+function toggleMusic() {
+  bgm.paused ? bgm.play().catch(e=>console.log(e)) : bgm.pause();
+}
+
+// Fungsi start musik dan pindah slide
+function startMusicAndSlide() {
+  bgm.play().catch(e => console.log("Audio play failed:", e));
+  nextSlide(2);
+}
 
 function nextSlide(n){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
   document.getElementById('slide'+n).classList.add('active');
 }
 
+// Tombol "No" yang lari-lari
 const noBtn=document.getElementById('noBtn');
-noBtn.onmouseover=()=>{
+noBtn.onmouseover=()=> {
   noBtn.style.left=Math.random()*200-100+'px';
   noBtn.style.top=Math.random()*200-100+'px';
 }
 
+// Tombol "Yes" dengan efek scaling
 let count=0;
 const yesBtn=document.getElementById('yesBtn');
 const msg=document.getElementById('msg');
