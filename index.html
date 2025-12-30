@@ -17,8 +17,6 @@ body{
   color:var(--text);
   overflow-x:hidden;
 }
-
-/* General slide */
 .slide{
   width:100vw;
   min-height:100vh;
@@ -36,16 +34,6 @@ body{
   margin:10px;
   object-fit:cover;
 }
-
-/* Sticker */
-.sticker{
-  position:absolute;
-  width:70px;
-  height:70px;
-  pointer-events:none;
-}
-
-/* Tombol interaktif */
 button{
   padding:10px 20px;
   font-size:16px;
@@ -57,19 +45,15 @@ button{
   position:relative;
   z-index:10;
 }
-
-/* Scrapbook style for slide 5 */
-.scrap-row{
+/* Layout slide 5 2-jajar */
+.slide5-row{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
+  max-width:90%;
 }
-.scrap-row img{
-  width:30%;
-  margin:5px;
-}
-.scrap-bottom img{
-  width:28%;
+.slide5-row img{
+  width:45%;
   margin:5px;
 }
 </style>
@@ -101,11 +85,9 @@ button{
 <!-- Slide 3 -->
 <div class="slide" style="background:#ffe0e0;">
   <h2>Scrapbook Memories</h2>
-  <div class="scrap-row">
+  <div class="slide5-row">
     <img src="photo1.jpg" alt="Photo1">
     <img src="photo2.jpg" alt="Photo2">
-  </div>
-  <div class="scrap-bottom">
     <img src="photo3.jpg" alt="Photo3">
     <img src="photo4.jpg" alt="Photo4">
     <img src="photo5.jpg" alt="Photo5">
@@ -115,51 +97,31 @@ button{
 <!-- Slide 4 -->
 <div class="slide" style="background:#e0ffe0;">
   <h2>Moments Together</h2>
-  <div class="scrap-row">
+  <div class="slide5-row">
     <img src="photo6.jpg" alt="Photo6">
     <img src="photo7.jpg" alt="Photo7">
-  </div>
-  <div class="scrap-bottom">
     <img src="photo8.jpg" alt="Photo8">
     <img src="photo9.jpg" alt="Photo9">
     <img src="photo10.jpg" alt="Photo10">
   </div>
 </div>
 
-<!-- Slide 5 (Photobooth / scrapbook style, gambar couple1-6, banyak sticker) -->
+<!-- Slide 5 (2-jajar, couple1-6) -->
 <div class="slide" style="background:#e0e0ff;">
   <h2>Our Special Days</h2>
-
-  <!-- 2 gambar atas -->
-  <div class="scrap-row">
+  <div class="slide5-row">
     <img src="couple1.jpg" alt="Couple1">
     <img src="couple2.jpg" alt="Couple2">
-  </div>
-
-  <!-- 3 gambar bawah -->
-  <div class="scrap-bottom">
     <img src="couple3.jpg" alt="Couple3">
     <img src="couple4.jpg" alt="Couple4">
     <img src="couple5.jpg" alt="Couple5">
+    <img src="couple6.jpg" alt="Couple6">
   </div>
-
-  <!-- Tambahan gambar couple6 di tengah bawah -->
-  <img src="couple6.jpg" alt="Couple6" style="width:35%; margin-top:15px; border-radius:15px;">
-
-  <!-- Sticker photobooth -->
-  <img class="sticker" style="top:20px; left:20px;" src="sticker11.png" alt="Sticker">
-  <img class="sticker" style="top:50px; left:150px;" src="sticker12.png" alt="Sticker">
-  <img class="sticker" style="top:80px; right:40px;" src="sticker13.png" alt="Sticker">
-  <img class="sticker" style="bottom:30px; left:50px;" src="sticker14.png" alt="Sticker">
-  <img class="sticker" style="bottom:60px; right:80px;" src="sticker15.png" alt="Sticker">
-  <img class="sticker" style="bottom:100px; right:150px;" src="sticker16.png" alt="Sticker">
-  <img class="sticker" style="top:150px; left:250px;" src="sticker17.png" alt="Sticker">
-  <img class="sticker" style="bottom:150px; left:200px;" src="sticker18.png" alt="Sticker">
 </div>
 
 <script>
-  const audio = document.getElementById('bgMusic');
-  document.body.addEventListener('click', ()=> audio.play());
+const audio = document.getElementById('bgMusic');
+document.body.addEventListener('click', ()=> audio.play());
 </script>
 
 </body>
