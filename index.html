@@ -1,115 +1,147 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>365 Days With You</title>
 <style>
 :root{
-  --bg:#fefefe;
+  --card:#b8b6ff;
+  --bar:#a7a4ff;
   --text:#2a2a55;
+  --btn:#7c7aff;
 }
+*{box-sizing:border-box;font-family:'Courier New', monospace;}
 body{
-  margin:0;
-  padding:0;
-  font-family:'Arial', sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
+  margin:0; height:100vh; overflow:hidden;
+  background:
+    linear-gradient(#ffffff10 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff10 1px, transparent 1px),
+    linear-gradient(135deg,#2b1b3f,#4a2a6f);
+  background-size:40px 40px,40px 40px,cover;
 }
-.slide{
-  width:100vw;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  position:relative;
-  padding:20px;
-  box-sizing:border-box;
-}
-.slide img{
-  border-radius:15px;
-  margin:10px;
-  object-fit:cover;
-}
-button{
-  padding:10px 20px;
-  font-size:16px;
-  border:none;
-  border-radius:8px;
-  background:#7c7aff;
-  color:#fff;
-  cursor:pointer;
-  position:relative;
-  z-index:10;
-}
-/* Layout slide 5 2-jajar */
-.slide5-row{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  max-width:90%;
-}
-.slide5-row img{
-  width:45%;
-  margin:5px;
-}
+.slide{display:none;width:100%;height:100%;position:relative;}
+.slide.active{display:block;}
+.window{background:var(--card);border-radius:14px;position:absolute;color:var(--text);box-shadow:0 12px 30px rgba(0,0,0,.3);}
+.titlebar{height:28px;background:var(--bar);border-radius:14px 14px 0 0;display:flex;align-items:center;gap:6px;padding:0 10px;}
+.titlebar span{width:8px;height:8px;border-radius:50%;background:#ecebff;}
+.button{background:var(--btn);color:white;padding:12px 22px;border-radius:14px;cursor:pointer;display:inline-block;transition:.25s;}
+.button:hover{transform:scale(1.08);}
+.back{position:absolute;right:20px;bottom:20px;background:rgba(124,122,255,.9);color:white;padding:8px 14px;border-radius:12px;font-size:13px;cursor:pointer;}
+.profile{top:40px;left:40px;width:560px;}
+.profile-body{display:flex;gap:18px;padding:16px;}
+.profile img{width:200px;border-radius:12px;}
+.profile p{font-size:14px;line-height:1.6;}
+.thumbs{display:flex;gap:8px;margin-top:12px;}
+.thumbs div{width:42px;height:42px;background:#9fa0ff;border-radius:8px;}
+.action{top:230px;right:80px;width:220px;text-align:center;}
+.action-body{padding:18px;}
+.player{bottom:40px;left:40px;width:260px;font-size:13px;}
+.player-body{padding:14px;}
+.controls{margin-top:8px;font-size:18px;display:flex;gap:14px;cursor:pointer;}
+.center-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;text-align:center;}
+.buttons{display:flex;justify-content:center;gap:24px;margin-top:20px;}
+.no{position:relative;}
+.message{margin-top:22px;font-size:18px;}
+.slide3-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;display:flex;gap:24px;}
+.slide3-card img{width:260px;border-radius:16px;}
+.slide3-card p{font-size:14px;line-height:1.7;}
+/* Slide 4 photobooth */
+.photobooth{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:50px;}
+.photobooth img{width:30%;border-radius:12px;}
 </style>
 </head>
 <body>
 
-<!-- Musik autoplay -->
-<audio id="bgMusic" autoplay loop>
-  <source src="soeasy.mp3" type="audio/mpeg">
-  Browsermu tidak mendukung audio.
-</audio>
+<audio id="bgm" src="soeasy.mp3" loop></audio>
 
-<!-- Slide 1 -->
-<div class="slide" style="background:#b8b6ff;">
-  <h1>Happy 365 Days With You!</h1>
-  <img src="couple.jpg" alt="Couple" style="max-width:60%;">
-  <p>Semoga setiap hari kita selalu bahagia bersama 💖</p>
-  <button onclick="alert('Tombol Slide 1 diklik!')">Klik Aku</button>
-</div>
-
-<!-- Slide 2 -->
-<div class="slide" style="background:#a7a4ff;">
-  <h2>Kenangan Indah Kita</h2>
-  <img src="kimseonho.jpg" alt="Kim Seonho" style="max-width:50%;">
-  <p>Momen tak terlupakan 💫</p>
-  <button onclick="alert('Tombol Slide 2 diklik!')">Klik Aku Juga</button>
-</div>
-
-<!-- Slide 3 -->
-<div class="slide" style="background:#ffe0e0;">
-  <h2>Scrapbook Memories</h2>
-  <div class="slide5-row">
-    <img src="photo1.jpg" alt="Photo1">
-    <img src="photo2.jpg" alt="Photo2">
-    <img src="photo3.jpg" alt="Photo3">
-    <img src="photo4.jpg" alt="Photo4">
-    <img src="photo5.jpg" alt="Photo5">
+<!-- SLIDE 1 -->
+<div class="slide active" id="slide1">
+  <div class="window profile">
+    <div class="titlebar"><span></span><span></span><span></span></div>
+    <div class="profile-body">
+      <img src="kimseonho.jpg">
+      <div>
+        <h2>Seonh0__kim</h2>
+        <p>
+          <b>Hello, Bebe!</b><br>
+          Finally, we’re here.<br>
+          Let’s see what we’ve done together<br>
+          in these 365 days.
+        </p>
+        <div class="thumbs"><div></div><div></div><div></div><div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="window action">
+    <div class="titlebar"><span></span><span></span><span></span></div>
+    <div class="action-body">
+      <div class="button" onclick="bgm.play(); nextSlide(2)">Happy Anniversary 🤍</div>
+    </div>
+  </div>
+  <div class="window player">
+    <div class="titlebar"><span></span><span></span><span></span></div>
+    <div class="player-body">
+      ♡ playing now<br>
+      <b>So Easy To Fall In Love</b>
+      <div class="controls"><span onclick="toggleMusic()">⏯</span></div>
+    </div>
   </div>
 </div>
 
-<!-- Slide 4 -->
-<div class="slide" style="background:#e0ffe0;">
-  <h2>Moments Together</h2>
-  <div class="slide5-row">
-    <img src="photo6.jpg" alt="Photo6">
-    <img src="photo7.jpg" alt="Photo7">
-    <img src="photo8.jpg" alt="Photo8">
-    <img src="photo9.jpg" alt="Photo9">
-    <img src="photo10.jpg" alt="Photo10">
+<!-- SLIDE 2 -->
+<div class="slide" id="slide2">
+  <div class="center-card">
+    <h2>Are you happy spending these 365 days wimme, Bebe?</h2>
+    <div class="buttons">
+      <div class="button no" id="noBtn">Noo</div>
+      <div class="button" id="yesBtn">Yessss</div>
+    </div>
+    <div class="message" id="msg"></div>
   </div>
+  <div class="back" onclick="nextSlide(1)">← Back</div>
 </div>
 
-<!-- Slide 5 (2-jajar, couple1-6) -->
-<div class="slide" style="background:#e0e0ff;">
-  <h2>Our Special Days</h2>
-  <div class="slide5-row">
+<!-- SLIDE 3: Timer since 1 Jan 2025 -->
+<div class="slide" id="slide3">
+  <div class="center-card" style="font-size:24px;">
+    <h2>Days since 1 Jan 2025</h2>
+    <div id="timer">0 days</div>
+    <br>
+    <a href="https://example.com" target="_blank" class="button">Open Link</a>
+  </div>
+  <div class="back" onclick="nextSlide(2)">← Back</div>
+</div>
+
+<!-- SLIDE 4: Slide 3 sebelumnya -->
+<div class="slide" id="slide4">
+  <div class="slide3-card">
+    <img src="couple.jpg">
+    <p>
+      <b>Bebe, happy 365 days of us.</b><br><br>
+      365 days isn’t a short time if we’re unhappy,
+      but it’s never long when we’re happy.
+      Doesn’t it feel like it flew by?
+      I guess that means I’m truly happy being with you.<br><br>
+      Thank you for staying, for choosing me every day,
+      and for spending your time with me even when I’m not at my best.
+      Thank you for listening to my random thoughts
+      and for being my safe place to talk.<br><br>
+      I’m sorry for the imperfections that come with loving me.
+      Thank you for holding my hand while I’m still learning,
+      growing, and figuring life out.<br><br>
+      I hope we continue this journey together—
+      sharing quiet moments, loud laughter,
+      and many happy days ahead.<br><br>
+      Always with you. 🤍
+    </p>
+  </div>
+  <div class="back" onclick="nextSlide(2)">← Back</div>
+</div>
+
+<!-- SLIDE 5: Photobooth 6 strips 2-jajar -->
+<div class="slide" id="slide5">
+  <h2 style="text-align:center;margin-top:30px;">Our Special Days</h2>
+  <div class="photobooth">
     <img src="couple1.jpg" alt="Couple1">
     <img src="couple2.jpg" alt="Couple2">
     <img src="couple3.jpg" alt="Couple3">
@@ -117,12 +149,45 @@ button{
     <img src="couple5.jpg" alt="Couple5">
     <img src="couple6.jpg" alt="Couple6">
   </div>
+  <div class="back" onclick="nextSlide(4)">← Back</div>
 </div>
 
 <script>
-const audio = document.getElementById('bgMusic');
-document.body.addEventListener('click', ()=> audio.play());
-</script>
+const bgm = document.getElementById("bgm");
+function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
+function nextSlide(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('slide'+n).classList.add('active');
+}
 
+// Yes/No button logic
+const noBtn=document.getElementById('noBtn');
+noBtn.onmouseover=()=>{noBtn.style.left=Math.random()*200-100+'px'; noBtn.style.top=Math.random()*200-100+'px';}
+
+let count=0;
+const yesBtn=document.getElementById('yesBtn');
+const msg=document.getElementById('msg');
+yesBtn.onclick=()=>{
+  count++;
+  yesBtn.style.transform=`scale(${1+count*0.3})`;
+  if(count===1) msg.innerText="You sure ’bout it?";
+  if(count===2) msg.innerText="Reallyyyyy?";
+  if(count===3){
+    msg.innerText="Ohh… I see. You’re really happy wimme 🤍";
+    setTimeout(()=>nextSlide(3),1500);
+  }
+}
+
+// Timer logic
+function updateTimer(){
+  const start = new Date('2025-01-01T00:00:00');
+  const now = new Date();
+  const diff = now - start;
+  const days = Math.floor(diff / (1000*60*60*24));
+  document.getElementById('timer').innerText = days + " days";
+}
+setInterval(updateTimer,1000);
+updateTimer();
+</script>
 </body>
 </html>
