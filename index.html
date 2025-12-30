@@ -9,6 +9,7 @@
   --bar:#a7a4ff;
   --text:#2a2a55;
   --btn:#7c7aff;
+  --heart:#3b6fb1;
 }
 
 *{ box-sizing:border-box; font-family:'Courier New', monospace; }
@@ -25,11 +26,11 @@ body{ margin:0; height:100vh; overflow:hidden;
 .window{ background:var(--card); border-radius:14px; position:absolute; color:var(--text); box-shadow:0 12px 30px rgba(0,0,0,.3);}
 .titlebar{ height:28px; background:var(--bar); border-radius:14px 14px 0 0; display:flex; align-items:center; gap:6px; padding:0 10px;}
 .titlebar span{ width:8px; height:8px; border-radius:50%; background:#ecebff;}
-.button{ background:var(--btn); color:white; padding:12px 22px; border-radius:14px; cursor:pointer; display:inline-block; transition:.25s;}
+.button{ background:var(--btn); color:white; padding:12px 22px; border-radius:14px; cursor:pointer; display:inline-block; transition:.25s; text-align:center;}
 .button:hover{ transform:scale(1.08);}
 .back{ position:absolute; right:20px; bottom:20px; background:rgba(124,122,255,.9); color:white; padding:8px 14px; border-radius:12px; font-size:13px; cursor:pointer;}
 
-/* SLIDE 1 */
+/* Slide 1 */
 .profile{ top:20px; left:40px; width:600px; }
 .profile-body{ display:flex; gap:18px; padding:20px; }
 .profile img{ width:220px; border-radius:12px; }
@@ -40,29 +41,47 @@ body{ margin:0; height:100vh; overflow:hidden;
 .player-body{ padding:14px; }
 .controls{ margin-top:8px; font-size:18px; display:flex; gap:14px; cursor:pointer; }
 
-/* SLIDE 2 */
+/* Slide 2 */
 .center-card{ background:var(--card); width:900px; margin:80px auto; border-radius:18px; padding:28px; text-align:center; }
 .buttons{ display:flex; justify-content:center; gap:24px; margin-top:20px; }
 .no{ position:relative; }
 .message{ margin-top:22px; font-size:18px; }
 
-/* SLIDE 3 TIMER */
+/* Slide 3 digital timer */
 .timer-card{ background:var(--card); width:600px; margin:100px auto; border-radius:18px; padding:28px; text-align:center; font-size:18px; }
 .timer-card a{ color:var(--btn); text-decoration:none; font-weight:bold; }
+.timer-display{ font-size:32px; font-weight:bold; margin:20px 0; font-family:'Courier New', monospace; }
 
-/* SLIDE 4 (Slide ucapan 365 hari) */
-.slide4-card{ background:var(--card); width:900px; margin:80px auto; border-radius:18px; padding:28px; display:flex; gap:24px; }
+/* Slide 4 */
+.slide4-card{ background:var(--card); width:900px; margin:80px auto; border-radius:18px; padding:28px; display:flex; gap:24px; flex-direction: column; align-items: center; }
 .slide4-card img{ width:260px; border-radius:16px; }
-.slide4-card p{ font-size:14px; line-height:1.7; }
+.slide4-card p{ font-size:14px; line-height:1.7; text-align:center; }
+.heart-btn{
+  background:var(--heart);
+  color:white;
+  border:none;
+  font-size:16px;
+  padding:12px 20px;
+  border-radius:50%;
+  cursor:pointer;
+  width:60px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:20px;
+  transition: transform 0.25s;
+}
+.heart-btn:hover{ transform: scale(1.2); }
 
-/* SLIDE 5 PHOTOSTRIP */
+/* Slide 5 Photobooth */
 .photobooth {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 40px;
-  background: #1e3d7a; /* biru denim */
+  background: #1e3d7a;
   min-height: 100vh;
   box-sizing: border-box;
   position: relative;
@@ -94,7 +113,7 @@ body{ margin:0; height:100vh; overflow:hidden;
 
 <audio id="bgm" src="soeasy.mp3" loop></audio>
 
-<!-- SLIDE 1 -->
+<!-- Slide 1 -->
 <div class="slide active" id="slide1">
   <div class="window profile">
     <div class="titlebar"><span></span><span></span><span></span></div>
@@ -126,7 +145,7 @@ body{ margin:0; height:100vh; overflow:hidden;
   </div>
 </div>
 
-<!-- SLIDE 2 -->
+<!-- Slide 2 -->
 <div class="slide" id="slide2">
   <div class="center-card">
     <h2>Are you happy spending these 365 days wimme, Bebe?</h2>
@@ -139,17 +158,17 @@ body{ margin:0; height:100vh; overflow:hidden;
   <div class="back" onclick="nextSlide(1)">← Back</div>
 </div>
 
-<!-- SLIDE 3 TIMER -->
+<!-- Slide 3 Timer -->
 <div class="slide" id="slide3">
   <div class="timer-card">
     <h2>Countdown Since 1 January 2025</h2>
-    <p id="timer"></p>
-    <p>Click <a href="#" id="timerLink">here</a> to continue.</p>
+    <div class="timer-display" id="timer"></div>
+    <div class="button" onclick="nextSlide(4)">Do you still want us to see each other next month?</div>
   </div>
   <div class="back" onclick="nextSlide(2)">← Back</div>
 </div>
 
-<!-- SLIDE 4 (Slide ucapan 365 hari) -->
+<!-- Slide 4 Ucapan -->
 <div class="slide" id="slide4">
   <div class="slide4-card">
     <img src="couple.jpg">
@@ -160,11 +179,12 @@ body{ margin:0; height:100vh; overflow:hidden;
       I hope we continue this journey together—sharing quiet moments, loud laughter, and many happy days ahead.<br><br>
       Always with you. 🤍
     </p>
+    <button class="heart-btn" onclick="nextSlide(5)">❤️</button>
   </div>
   <div class="back" onclick="nextSlide(3)">← Back</div>
 </div>
 
-<!-- SLIDE 5 PHOTOSTRIP -->
+<!-- Slide 5 Photobooth -->
 <div class="slide" id="slide5">
   <div class="photobooth">
     <div class="strip"><img src="couple1.jpg"></div>
@@ -181,9 +201,9 @@ body{ margin:0; height:100vh; overflow:hidden;
 const bgm = document.getElementById("bgm");
 function toggleMusic(){ bgm.paused ? bgm.play().catch(e=>console.log(e)) : bgm.pause(); }
 function startMusicAndSlide(){ bgm.play().catch(e=>console.log("Audio play failed:", e)); nextSlide(2);}
-function nextSlide(n){ document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active')); document.getElementById('slide'+n).classList.add('active');}
+function nextSlide(n){ document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active')); document.getElementById('slide'+n).classList.add('active'); }
 
-// Slide 2 interaction
+// Slide 2 interactions
 const noBtn=document.getElementById('noBtn');
 noBtn.onmouseover=()=> { noBtn.style.left=Math.random()*200-100+'px'; noBtn.style.top=Math.random()*200-100+'px'; }
 let count=0;
@@ -207,11 +227,10 @@ function updateTimer(){
   const hours=Math.floor(diff / (1000*60*60)) %24;
   const minutes=Math.floor(diff / (1000*60)) %60;
   const seconds=Math.floor(diff /1000) %60;
-  timerEl.innerText=`${days} days ${hours}h ${minutes}m ${seconds}s`;
+  timerEl.innerText=`${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 setInterval(updateTimer,1000);
 updateTimer();
-document.getElementById("timerLink").onclick = (e)=>{ e.preventDefault(); nextSlide(4);}
 </script>
 
 </body>
