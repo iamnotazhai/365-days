@@ -9,6 +9,7 @@
   --bar:#a7a4ff;
   --text:#2a2a55;
   --btn:#7c7aff;
+  --btn-next:#5ac8fa;
 }
 *{box-sizing:border-box;font-family:'Courier New', monospace;}
 body{
@@ -26,6 +27,7 @@ body{
 .titlebar span{width:8px;height:8px;border-radius:50%;background:#ecebff;}
 .button{background:var(--btn);color:white;padding:12px 22px;border-radius:14px;cursor:pointer;display:inline-block;transition:.25s;}
 .button:hover{transform:scale(1.08);}
+.button-next{background:var(--btn-next);}
 .back{position:absolute;right:20px;bottom:20px;background:rgba(124,122,255,.9);color:white;padding:8px 14px;border-radius:12px;font-size:13px;cursor:pointer;}
 .profile{top:40px;left:40px;width:560px;}
 .profile-body{display:flex;gap:18px;padding:16px;}
@@ -35,9 +37,9 @@ body{
 .thumbs div{width:42px;height:42px;background:#9fa0ff;border-radius:8px;}
 .action{top:230px;right:80px;width:220px;text-align:center;}
 .action-body{padding:18px;}
-.player{bottom:40px;left:40px;width:260px;font-size:13px;}
+.player{bottom:40px;left:40px;width:260px;font-size:13px;z-index:10;}
 .player-body{padding:14px;}
-.controls{margin-top:8px;font-size:18px;display:flex;gap:14px;cursor:pointer;}
+.controls{margin-top:8px;font-size:24px;display:flex;gap:14px;cursor:pointer;}
 .center-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;text-align:center;}
 .buttons{display:flex;justify-content:center;gap:24px;margin-top:20px;}
 .no{position:relative;}
@@ -45,9 +47,9 @@ body{
 .slide3-card{background:var(--card);width:900px;margin:80px auto;border-radius:18px;padding:28px;display:flex;gap:24px;}
 .slide3-card img{width:260px;border-radius:16px;}
 .slide3-card p{font-size:14px;line-height:1.7;}
-/* Slide 4 photobooth */
 .photobooth{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:50px;}
 .photobooth img{width:30%;border-radius:12px;}
+.timer-text{font-size:28px;font-weight:bold;margin-top:20px;}
 </style>
 </head>
 <body>
@@ -101,18 +103,18 @@ body{
   <div class="back" onclick="nextSlide(1)">← Back</div>
 </div>
 
-<!-- SLIDE 3: Timer since 1 Jan 2025 -->
+<!-- SLIDE 3: Timer sejak 1 Jan 2025 + jam, menit, detik -->
 <div class="slide" id="slide3">
   <div class="center-card" style="font-size:24px;">
-    <h2>Days since 1 Jan 2025</h2>
-    <div id="timer">0 days</div>
+    <h2>Time since 1 Jan 2025</h2>
+    <div class="timer-text" id="timer">0 days 00:00:00</div>
     <br>
-    <a href="https://example.com" target="_blank" class="button">Open Link</a>
+    <div class="button button-next" onclick="nextSlide(4)">💙 Next</div>
   </div>
   <div class="back" onclick="nextSlide(2)">← Back</div>
 </div>
 
-<!-- SLIDE 4: Slide 3 sebelumnya -->
+<!-- SLIDE 4: Pesan panjang (slide 3 lama) -->
 <div class="slide" id="slide4">
   <div class="slide3-card">
     <img src="couple.jpg">
@@ -134,13 +136,16 @@ body{
       and many happy days ahead.<br><br>
       Always with you. 🤍
     </p>
+    <div class="button button-next" style="margin-top:20px;" onclick="nextSlide(5)">
+      lets be happy so we can create this pict
+    </div>
   </div>
-  <div class="back" onclick="nextSlide(2)">← Back</div>
+  <div class="back" onclick="nextSlide(3)">← Back</div>
 </div>
 
-<!-- SLIDE 5: Photobooth 6 strips 2-jajar -->
+<!-- SLIDE 5: Photobooth ala gallery -->
 <div class="slide" id="slide5">
-  <h2 style="text-align:center;margin-top:30px;">Our Special Days</h2>
+  <h2 style="text-align:center;margin-top:30px;">Our Gallery</h2>
   <div class="photobooth">
     <img src="couple1.jpg" alt="Couple1">
     <img src="couple2.jpg" alt="Couple2">
@@ -155,6 +160,7 @@ body{
 <script>
 const bgm = document.getElementById("bgm");
 function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
+
 function nextSlide(n){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
   document.getElementById('slide'+n).classList.add('active');
@@ -178,13 +184,20 @@ yesBtn.onclick=()=>{
   }
 }
 
-// Timer logic
+// Timer logic dengan jam, menit, detik
 function updateTimer(){
   const start = new Date('2025-01-01T00:00:00');
   const now = new Date();
   const diff = now - start;
   const days = Math.floor(diff / (1000*60*60*24));
-  document.getElementById('timer').innerText = days + " days";
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((diff % (1000*60)) / 1000);
+  document.getElementById('timer').innerText = 
+    days + " days " +
+    String(hours).padStart(2,'0')+":"+
+    String(minutes).padStart(2,'0')+":"+
+    String(seconds).padStart(2,'0');
 }
 setInterval(updateTimer,1000);
 updateTimer();
