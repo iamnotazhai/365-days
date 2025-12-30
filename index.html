@@ -183,7 +183,7 @@ body{
 
 <body>
 
-<audio id="bgm" src="soeasy.mp3" autoplay loop></audio>
+<audio id="bgm" src="soeasy.mp3" loop></audio>
 
 <!-- SLIDE 1 -->
 <div class="slide active" id="slide1">
@@ -270,8 +270,15 @@ body{
 </div>
 
 <script>
-const bgm=document.getElementById("bgm");
-function toggleMusic(){bgm.paused?bgm.play():bgm.pause();}
+const bgm = document.getElementById("bgm");
+
+// musik autoplay setelah klik pertama di halaman
+document.body.addEventListener('click', function startMusic(){
+    bgm.play().catch(e=>console.log(e));
+    document.body.removeEventListener('click', startMusic);
+});
+
+function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
 
 function nextSlide(n){
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
