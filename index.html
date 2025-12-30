@@ -209,7 +209,8 @@ body{
   <div class="window action">
     <div class="titlebar"><span></span><span></span><span></span></div>
     <div class="action-body">
-      <div class="button" onclick="nextSlide(2)">Happy Anniversary 🤍</div>
+      <!-- Tombol ini sekaligus memulai musik -->
+      <div class="button" onclick="bgm.play(); nextSlide(2)">Happy Anniversary 🤍</div>
     </div>
   </div>
 
@@ -271,12 +272,6 @@ body{
 
 <script>
 const bgm = document.getElementById("bgm");
-
-// musik autoplay setelah klik pertama di halaman
-document.body.addEventListener('click', function startMusic(){
-    bgm.play().catch(e=>console.log(e));
-    document.body.removeEventListener('click', startMusic);
-});
 
 function toggleMusic(){ bgm.paused ? bgm.play() : bgm.pause(); }
 
