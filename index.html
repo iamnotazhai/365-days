@@ -1,218 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>365 Days With You</title>
 <style>
-:root{
-  --card:#b8b6ff;
-  --bar:#a7a4ff;
-  --text:#2a2a55;
-  --btn:#7c7aff;
-}
-
-*{ box-sizing:border-box; font-family:'Courier New', monospace; }
-body{ margin:0; height:100vh; overflow:hidden;
-  background:linear-gradient(#ffffff10 1px, transparent 1px),
-             linear-gradient(90deg, #ffffff10 1px, transparent 1px),
-             linear-gradient(135deg,#2b1b3f,#4a2a6f);
-  background-size:40px 40px,40px 40px,cover;
-}
-.slide{ display:none; width:100%; height:100%; position:relative; }
-.slide.active{ display:block; }
-.window{ background:var(--card); border-radius:14px; position:absolute; color:var(--text); box-shadow:0 12px 30px rgba(0,0,0,.3);}
-.titlebar{ height:28px; background:var(--bar); border-radius:14px 14px 0 0; display:flex; align-items:center; gap:6px; padding:0 10px;}
-.titlebar span{ width:8px; height:8px; border-radius:50%; background:#ecebff;}
-.button{ background:var(--btn); color:white; padding:12px 22px; border-radius:14px; cursor:pointer; display:inline-block; transition:.25s; text-align:center;}
-.button:hover{ transform:scale(1.08);}
-.back{ position:absolute; right:20px; bottom:20px; background:rgba(124,122,255,.9); color:white; padding:8px 14px; border-radius:12px; font-size:13px; cursor:pointer;}
-
-/* Slide 1 */
-.profile{ top:20px; left:40px; width:600px; }
-.profile-body{ display:flex; gap:18px; padding:20px; }
-.profile img{ width:220px; border-radius:12px; }
-.profile-text{ font-size:16px; line-height:1.6; }
-.action{ top:300px; right:80px; width:240px; text-align:center; }
-.action-body{ padding:18px; }
-.player{ bottom:40px; left:40px; width:260px; font-size:13px; }
-.player-body{ padding:14px; }
-.controls{ margin-top:8px; font-size:18px; display:flex; gap:14px; cursor:pointer; }
-
-/* Slide 2 */
-.center-card{ background:var(--card); width:900px; margin:80px auto; border-radius:18px; padding:28px; text-align:center; }
-.buttons{ display:flex; justify-content:center; gap:24px; margin-top:20px; }
-.no{ position:relative; }
-.message{ margin-top:22px; font-size:18px; }
-
-/* Slide 3 digital timer */
-.timer-card{ background:var(--card); width:600px; margin:100px auto; border-radius:18px; padding:28px; text-align:center; font-size:18px; }
-.timer-display{ font-size:32px; font-weight:bold; margin:20px 0; font-family:'Courier New', monospace; }
-
-/* Slide 4 message */
-.slide3-card{ background:var(--card); width:900px; margin:80px auto; border-radius:18px; padding:28px; display:flex; gap:24px; }
-.slide3-card img{ width:260px; border-radius:16px; }
-.slide3-card p{ font-size:14px; line-height:1.7; }
-
-/* Slide 5 Photobooth */
-.photobooth {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: #1e3d7a; /* biru denim */
-  min-height: 100vh;
-  padding: 40px 0;
-  gap: 20px;
-  position: relative;
-}
-.strip {
-  position: relative;
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px;
-  width: 200px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-.strip img {
-  width: 100%;
-  display: block;
-  border-radius: 10px;
-}
-.strip:hover { transform: scale(1.05); transition: all 0.3s; }
-
-/* Ornamen kecil */
-.ornament { position:absolute; pointer-events:none; }
-.ornament.heart { width: 24px; height: 24px; background:red; border-radius:50%; top:-10px; right:-10px; }
-.ornament.bunny { width:30px; height:30px; background:url('bunny.png') no-repeat center/contain; top:-5px; left:-5px; }
-.ornament.camera { width:25px; height:25px; background:url('camera.png') no-repeat center/contain; top:10px; left:-10px; }
-.ornament.star { width:20px; height:20px; background:yellow; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); top:-10px; right:10px; }
-.ornament.patch { width:40px; height:40px; background:url('patch.png') no-repeat center/contain; bottom:-10px; left:10px; }
-.ornament.text { width:50px; height:20px; background:url('text.png') no-repeat center/contain; bottom:-10px; right:10px; }
+  :root{
+    --bg:#fefefe;
+    --text:#2a2a55;
+  }
+  body{
+    margin:0;
+    padding:0;
+    font-family:'Arial', sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+  }
+  .slide{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    padding:20px;
+    box-sizing:border-box;
+  }
+  .slide img{
+    max-width:60%;
+    border-radius:15px;
+    margin:10px 0;
+  }
+  .sticker{
+    position:absolute;
+    width:80px;
+    height:80px;
+    pointer-events:none; /* Sticker tidak memblokir klik tombol */
+  }
+  #sticker1{top:20px; left:20px;}
+  #sticker2{bottom:20px; right:20px;}
+  h1,h2,p{
+    margin:10px 0;
+  }
+  button{
+    padding:10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    background:#7c7aff;
+    color:#fff;
+    cursor:pointer;
+    position:relative;
+    z-index:10; /* Pastikan di atas layer lain */
+  }
+  audio{
+    display:none;
+  }
 </style>
 </head>
 <body>
 
-<audio id="bgm" src="soeasy.mp3" loop></audio>
+<!-- Musik autoplay -->
+<audio id="bgMusic" autoplay loop>
+  <source src="soeasy.mp3" type="audio/mpeg">
+  Browsermu tidak mendukung audio.
+</audio>
 
 <!-- Slide 1 -->
-<div class="slide active" id="slide1">
-  <div class="window profile">
-    <div class="titlebar"><span></span><span></span><span></span></div>
-    <div class="profile-body">
-      <img src="kimseonho.jpg">
-      <div>
-        <h1>Hello, Kim Seonho!</h1>
-        <p class="profile-text">
-          <b>Hello, Bebe!</b><br>
-          Finally, we’re here.<br>
-          Let’s see what we’ve done together in these 365 days.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="window action">
-    <div class="titlebar"><span></span><span></span><span></span></div>
-    <div class="action-body">
-      <div class="button" onclick="startMusicAndSlide()">Happy Anniversary 🤍</div>
-    </div>
-  </div>
-  <div class="window player">
-    <div class="titlebar"><span></span><span></span><span></span></div>
-    <div class="player-body">
-      ♡ playing now<br>
-      <b>So Easy To Fall In Love</b>
-      <div class="controls"><span onclick="toggleMusic()">⏯</span></div>
-    </div>
-  </div>
+<div class="slide" style="background:#b8b6ff;">
+  <h1>Happy 365 Days With You!</h1>
+  <img src="couple.jpg" alt="Couple">
+  <p>Semoga setiap hari kita selalu bahagia bersama 💖</p>
+  <img id="sticker1" class="sticker" src="sticker1.png" alt="Sticker">
+  <img id="sticker2" class="sticker" src="sticker2.png" alt="Sticker">
+  <button onclick="alert('Tombol Slide 1 diklik!')">Klik Aku</button>
 </div>
 
 <!-- Slide 2 -->
-<div class="slide" id="slide2">
-  <div class="center-card">
-    <h2>Are you happy spending these 365 days wimme, Bebe?</h2>
-    <div class="buttons">
-      <div class="button no" id="noBtn">Noo</div>
-      <div class="button" id="yesBtn">Yessss</div>
-    </div>
-    <div class="message" id="msg"></div>
-  </div>
-  <div class="back" onclick="nextSlide(1)">← Back</div>
-</div>
-
-<!-- Slide 3 Timer -->
-<div class="slide" id="slide3">
-  <div class="timer-card">
-    <h2>Countdown Since 1 January 2025</h2>
-    <div class="timer-display" id="timer"></div>
-    <div class="button" onclick="nextSlide(4)">Do you still want us to see each other next month?</div>
-  </div>
-  <div class="back" onclick="nextSlide(2)">← Back</div>
-</div>
-
-<!-- Slide 4 Message panjang -->
-<div class="slide" id="slide4">
-  <div class="slide3-card">
-    <img src="couple.jpg">
-    <p>
-      <b>Bebe, happy 365 days of us.</b><br><br>
-      365 days isn’t a short time if we’re unhappy, but it’s never long when we’re happy. Doesn’t it feel like it flew by? I guess that means I’m truly happy being with you.<br><br>
-      Thank you for staying, for choosing me every day, and for spending your time with me even when I’m not at my best. Thank you for listening to my random thoughts and for being my safe place to talk.<br><br>
-      I’m sorry for the imperfections that come with loving me. Thank you for holding my hand while I’m still learning, growing, and figuring life out.<br><br>
-      I hope we continue this journey together— sharing quiet moments, loud laughter, and many happy days ahead.<br><br>
-      Always with you. 🤍
-    </p>
-  </div>
-  <div class="back" onclick="nextSlide(3)">← Back</div>
-  <div class="button" onclick="nextSlide(5)">Next →</div>
-</div>
-
-<!-- Slide 5 Photobooth -->
-<div class="slide" id="slide5">
-  <div class="photobooth">
-    <div class="strip"><img src="couple1.jpg"><div class="ornament heart"></div></div>
-    <div class="strip"><img src="couple2.jpg"><div class="ornament bunny"></div></div>
-    <div class="strip"><img src="couple3.jpg"><div class="ornament camera"></div></div>
-    <div class="strip"><img src="couple4.jpg"><div class="ornament star"></div></div>
-    <div class="strip"><img src="couple5.jpg"><div class="ornament patch"></div></div>
-    <div class="strip"><img src="couple6.jpg"><div class="ornament text"></div></div>
-  </div>
-  <div class="back" onclick="nextSlide(4)">← Back</div>
+<div class="slide" style="background:#a7a4ff;">
+  <h2>Kenangan Indah Kita</h2>
+  <img src="kimseonho.jpg" alt="Kim Seonho">
+  <p>Momen tak terlupakan 💫</p>
+  <button onclick="alert('Tombol Slide 2 diklik!')">Klik Aku Juga</button>
 </div>
 
 <script>
-const bgm = document.getElementById("bgm");
-function toggleMusic(){ bgm.paused ? bgm.play().catch(e=>console.log(e)) : bgm.pause(); }
-function startMusicAndSlide(){ bgm.play().catch(e=>console.log("Audio play failed:", e)); nextSlide(2);}
-function nextSlide(n){ document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active')); document.getElementById('slide'+n).classList.add('active'); }
-
-// Slide 2 interactions
-const noBtn=document.getElementById('noBtn');
-noBtn.onmouseover=()=> { noBtn.style.left=Math.random()*200-100+'px'; noBtn.style.top=Math.random()*200-100+'px'; }
-let count=0;
-const yesBtn=document.getElementById('yesBtn');
-const msg=document.getElementById('msg');
-yesBtn.onclick=()=>{
-  count++;
-  yesBtn.style.transform=`scale(${1+count*0.3})`;
-  if(count===1) msg.innerText="You sure ’bout it?";
-  if(count===2) msg.innerText="Reallyyyyy?";
-  if(count===3){ msg.innerText="Ohh… I see. You’re really happy wimme 🤍"; setTimeout(()=>nextSlide(3),1500);}
-};
-
-// Timer Slide 3
-const timerEl = document.getElementById("timer");
-const targetDate = new Date("2025-01-01T00:00:00");
-function updateTimer(){
-  const now = new Date();
-  let diff = now - targetDate; if(diff<0) diff=0;
-  const days=Math.floor(diff / (1000*60*60*24));
-  const hours=Math.floor(diff / (1000*60*60)) %24;
-  const minutes=Math.floor(diff / (1000*60)) %60;
-  const seconds=Math.floor(diff /1000) %60;
-  timerEl.innerText=`${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-setInterval(updateTimer,1000);
-updateTimer();
+  // Jika autoplay diblok, klik di mana saja untuk play musik
+  const audio = document.getElementById('bgMusic');
+  document.body.addEventListener('click', ()=> audio.play());
 </script>
 
 </body>
